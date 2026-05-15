@@ -33,6 +33,18 @@ interface Product {
 }
 
 export default function InventoryPage() {
+  return (
+    <React.Suspense fallback={
+      <div className="min-vh-100 d-flex align-items-center justify-content-center">
+        <Loader2 className="animate-spin text-ims-primary" size={40} />
+      </div>
+    }>
+      <InventoryContent />
+    </React.Suspense>
+  )
+}
+
+function InventoryContent() {
   const [products, setProducts] = useState<Product[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [isSubmitting, setIsSubmitting] = useState(false)
