@@ -8,6 +8,7 @@
   },
   "scripts": {
     "start": "node index.js",
+    "build": "echo 'No build step required for Express'",
     "dev": "node --watch index.js"
   },
   "keywords": [],
