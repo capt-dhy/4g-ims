@@ -60,17 +60,17 @@ export default function DashboardPage() {
   const fetchDashboardData = async () => {
     try {
       setIsLoading(true)
-      const user = getUser()
-      if (user) {
-        setUserName(user.fullName || user.email.split('@')[0])
-        setUserRole(user.role)
-      }
-
       // Fetch actual data from Express API
-      const [products, activities] = await Promise.all([
+      const [me, products, activities] = await Promise.all([
+        apiFetch('/api/auth/me'),
         apiFetch('/api/products'),
         apiFetch('/api/activity')
       ])
+
+      if (me) {
+        setUserName(me.fullName || me.email.split('@')[0])
+        setUserRole(me.role)
+      }
 
       const lowStockCount = products.filter((p: any) => p.stock <= p.lowStockThreshold).length
       const totalValue = products.reduce((acc: number, p: any) => acc + (p.price * p.stock), 0)

@@ -37,7 +37,7 @@ export default function UserManagementPage() {
     try {
       setIsLoading(true)
       const [me, allUsers] = await Promise.all([
-        apiFetch('/api/me'),
+        apiFetch('/api/auth/me'),
         apiFetch('/api/users')
       ])
       setCurrentUser(me)

@@ -25,7 +25,7 @@ export default function TeamPage() {
     try {
       setIsLoading(true)
       const [me, members] = await Promise.all([
-        apiFetch('/api/me'),
+        apiFetch('/api/auth/me'),
         apiFetch('/api/team')
       ])
       setCurrentUser(me)
