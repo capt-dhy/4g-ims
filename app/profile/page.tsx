@@ -20,7 +20,7 @@ export default function ProfilePage() {
     try {
       setLoading(true)
       // Get detailed profile from API
-      const profile = await apiFetch('/api/me')
+      const profile = await apiFetch('/api/auth/me')
       setUser(profile)
     } catch (error: any) {
       console.error('Error fetching profile:', error)
